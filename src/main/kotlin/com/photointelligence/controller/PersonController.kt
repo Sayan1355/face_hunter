@@ -3,8 +3,11 @@ package com.photointelligence.controller
 import com.photointelligence.dto.CreatePersonRequestDto
 import com.photointelligence.dto.FaceRecordResponseDto
 import com.photointelligence.dto.PersonResponseDto
+import com.photointelligence.dto.PersonSearchResponseDto
+import com.photointelligence.dto.PhotoResponseDto
 import com.photointelligence.dto.UpdatePersonRequestDto
 import com.photointelligence.service.PersonService
+import com.photointelligence.service.PhotoService
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
@@ -13,13 +16,15 @@ import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 import java.util.UUID
 
 @RestController
 @RequestMapping("/api/persons")
 class PersonController(
-    private val personService: PersonService
+    private val personService: PersonService,
+    private val photoService: PhotoService
 ) {
 
     @PostMapping
@@ -53,5 +58,17 @@ class PersonController(
     fun getPersonFaces(@PathVariable id: UUID): ResponseEntity<List<FaceRecordResponseDto>> {
         val faces = personService.getPersonFaces(id)
         return ResponseEntity.ok(faces)
+    }
+
+    @GetMapping("/search")
+    fun searchPersons(@RequestParam("name") name: String): ResponseEntity<List<PersonSearchResponseDto>> {
+        val results = photoService.searchPersons(name)
+        return ResponseEntity.ok(results)
+    }
+
+    @GetMapping("/{id}/photos")
+    fun getPersonPhotos(@PathVariable id: UUID): ResponseEntity<List<PhotoResponseDto>> {
+        val photos = photoService.getPersonPhotos(id)
+        return ResponseEntity.ok(photos)
     }
 }

@@ -34,6 +34,12 @@ class FaceRecordEntity(
     @Column(name = "confidence")
     var confidence: Double? = null,
 
+    @Column(name = "similarity")
+    var similarity: Double? = null,
+
+    @Column(name = "embedding", columnDefinition = "TEXT")
+    var embedding: String? = null,
+
     @Column(name = "created_at", nullable = false, updatable = false)
     var createdAt: Instant = Instant.now()
 ) {

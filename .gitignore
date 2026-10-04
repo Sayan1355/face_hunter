@@ -42,3 +42,11 @@ out/
 ### Local PostgreSQL data ###
 .pgdata/
 
+### Storage and AI Service ###
+storage/
+ai-service/venv/
+ai-service/.venv/
+**/__pycache__/
+*.pyc
+.pytest_cache/
+

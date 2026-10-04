@@ -6,4 +6,6 @@ import org.springframework.stereotype.Repository
 import java.util.UUID
 
 @Repository
-interface PersonRepository : JpaRepository<PersonEntity, UUID>
+interface PersonRepository : JpaRepository<PersonEntity, UUID> {
+    fun findByNameContainingIgnoreCase(name: String): List<PersonEntity>
+}
