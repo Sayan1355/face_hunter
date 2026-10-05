@@ -14,7 +14,7 @@ The system indexes local photo collections, detects face occurrences, performs v
 - **Identity Search**: Fast case-insensitive name search for quick identity lookup (`GET /api/persons/search?name=...`).
 
 ### 📸 2. Privacy-First Photo Metadata Indexing
-- **Local Reference Indexing**: Stores only photo file paths and metadata in PostgreSQL (`photos` table). Raw photo binaries are never uploaded or stored in the database.
+- **Local Reference Indexing**: Stores only photo file paths and metadata in PostgreSQL (`photos` table). Raw photo  binaries are never uploaded or stored in the database.
 - **Photo-to-Person Mapping**: Seamlessly retrieves all distinct photos containing a specific person (`GET /api/persons/{id}/photos`).
 
 ### 🔍 3. Face Record Extraction & Vector Embeddings
